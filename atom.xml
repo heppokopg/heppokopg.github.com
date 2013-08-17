@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[へっぽこエンジニアの日誌]]></title>
+  <link href="http://heppokopg.github.io/atom.xml" rel="self"/>
+  <link href="http://heppokopg.github.io/"/>
+  <updated>2013-08-18T02:54:46+09:00</updated>
+  <id>http://heppokopg.github.io/</id>
+  <author>
+    <name><![CDATA[Heppoko]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>
