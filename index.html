@@ -9,7 +9,11 @@
   <meta name="author" content="Heppoko">
 
   
-  <meta name="description" content=" Blog Archives Recent Posts ">
+  <meta name="description" content="railsで3万行程度のレコードをダミーデータに書き換えるために、並行処理を行うようにparallelを使ってみた。 Gemfileに以下を記述 1
+2
+gem "parallel"
+gem "gimei" そしてインストール。 1
+bundle install &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +70,70 @@
       <div class="blog-index">
   
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/28/parallel/">Parallelで簡単並列処理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-28T00:03:00+09:00" pubdate data-updated="true">Nov 28<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>railsで3万行程度のレコードをダミーデータに書き換えるために、並行処理を行うようにparallelを使ってみた。</p>
+
+<p>Gemfileに以下を記述</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem "parallel"
+</span><span class='line'>gem "gimei"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>そしてインストール。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>bundle install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>今回はUserモデルの名前を偽名に書き換える処理を行ったので、gimeiライブラリもあわせて入れる。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>users = User.all
+</span><span class='line'>Parallel.each(users, in_threads: 3) do |user|
+</span><span class='line'>  user.update_attributes( name: Gimei.new.kanji )
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>スレッドの数を多くすると、コネクションのMAX値を超えてしまうこともあるので、要注意</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
     <a href="/blog/archives">Blog Archives</a>
@@ -77,6 +145,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/28/parallel/">parallelで簡単並列処理</a>
+      </li>
     
   </ul>
 </section>
