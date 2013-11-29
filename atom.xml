@@ -4,7 +4,7 @@
   <title><![CDATA[へっぽこエンジニアの日誌]]></title>
   <link href="http://heppokopg.github.io/atom.xml" rel="self"/>
   <link href="http://heppokopg.github.io/"/>
-  <updated>2013-11-28T00:24:51+09:00</updated>
+  <updated>2013-11-29T23:46:46+09:00</updated>
   <id>http://heppokopg.github.io/</id>
   <author>
     <name><![CDATA[Heppoko]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[railsで接続するcharetを指定する]]></title>
+    <link href="http://heppokopg.github.io/blog/2013/11/29/rails-charet/"/>
+    <updated>2013-11-29T23:32:00+09:00</updated>
+    <id>http://heppokopg.github.io/blog/2013/11/29/rails-charet</id>
+    <content type="html"><![CDATA[<p>railsでは、dbに接続するcharsetを指定しないと、エンコーディングがlatin1になってしまうので、
+予め指定をしておいく。</p>
+
+<p>config/database.ymlを開く。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>  encoding: utf8
+</span><span class='line'>  charset: utf8
+</span><span class='line'>  collation: utf8_general_ci</span></code></pre></td></tr></table></div></figure>
+
+
+<p>それぞれに上記を記述する。collationも、あらかじめ指定しておいたほうが、あとから変わらなくていいかもしれないので、とりあえず。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[parallelで簡単並列処理]]></title>

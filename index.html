@@ -9,11 +9,10 @@
   <meta name="author" content="Heppoko">
 
   
-  <meta name="description" content="railsで3万行程度のレコードをダミーデータに書き換えるために、並行処理を行うようにparallelを使ってみた。 Gemfileに以下を記述 1
+  <meta name="description" content="railsでは、dbに接続するcharsetを指定しないと、エンコーディングがlatin1になってしまうので、
+予め指定をしておいく。 config/database.ymlを開く。 1
 2
-gem "parallel"
-gem "gimei" そしてインストール。 1
-bundle install &hellip;">
+3 encoding: utf8 charset: utf8 collation: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +80,55 @@ bundle install &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/29/rails-charet/">Railsで接続するcharetを指定する</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-29T23:32:00+09:00" pubdate data-updated="true">Nov 29<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>railsでは、dbに接続するcharsetを指定しないと、エンコーディングがlatin1になってしまうので、
+予め指定をしておいく。</p>
+
+<p>config/database.ymlを開く。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>  encoding: utf8
+</span><span class='line'>  charset: utf8
+</span><span class='line'>  collation: utf8_general_ci</span></code></pre></td></tr></table></div></figure>
+
+
+<p>それぞれに上記を記述する。collationも、あらかじめ指定しておいたほうが、あとから変わらなくていいかもしれないので、とりあえず。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -159,6 +207,10 @@ bundle install &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/11/29/rails-charet/">railsで接続するcharetを指定する</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/11/28/parallel/">parallelで簡単並列処理</a>
       </li>
     
@@ -186,15 +238,6 @@ bundle install &hellip;">
 
 
 
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id; js.async = true;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 
 
 

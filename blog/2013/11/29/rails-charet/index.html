@@ -5,13 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - へっぽこエンジニアの日誌</title>
+  <title>railsで接続するcharetを指定する - へっぽこエンジニアの日誌</title>
   <meta name="author" content="Heppoko">
 
   
-  <meta name="description" content=" Blog Archive 2013 railsで接続するcharetを指定する
-Nov 29 2013 parallelで簡単並列処理
-Nov 28 2013 Recent Posts railsで接続するcharetを指定する parallelで簡単並列処理 ">
+  <meta name="description" content="railsでは、dbに接続するcharsetを指定しないと、エンコーディングがlatin1になってしまうので、
+予め指定をしておいく。 config/database.ymlを開く。 1
+2
+3 encoding: utf8 charset: utf8 collation: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +21,7 @@ Nov 28 2013 Recent Posts railsで接続するcharetを指定する parallelで�
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://heppokopg.github.io/blog/archives">
+  <link rel="canonical" href="http://heppokopg.github.io/blog/2013/11/29/rails-charet">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="へっぽこエンジニアの日誌" type="application/atom+xml">
@@ -78,41 +79,92 @@ Nov 28 2013 Recent Posts railsで接続するcharetを指定する parallelで�
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Railsで接続するcharetを指定する</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-29T23:32:00+09:00" pubdate data-updated="true">Nov 29<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>railsでは、dbに接続するcharsetを指定しないと、エンコーディングがlatin1になってしまうので、
+予め指定をしておいく。</p>
 
-  
-  <h2>2013</h2>
+<p>config/database.ymlを開く。</p>
 
-<article>
-  
-<h1><a href="/blog/2013/11/29/rails-charet/">railsで接続するcharetを指定する</a></h1>
-<time datetime="2013-11-29T23:32:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>29</span> <span class='year'>2013</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/11/28/parallel/">parallelで簡単並列処理</a></h1>
-<time datetime="2013-11-28T00:03:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>28</span> <span class='year'>2013</span></time>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>  encoding: utf8
+</span><span class='line'>  charset: utf8
+</span><span class='line'>  collation: utf8_general_ci</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
-
+<p>それぞれに上記を記述する。collationも、あらかじめ指定しておいたほうが、あとから変わらなくていいかもしれないので、とりあえず。</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Heppoko</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-29T23:32:00+09:00" pubdate data-updated="true">Nov 29<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  <a href="http://b.hatena.ne.jp/entry/http://heppokopg.github.io/blog/2013/11/29/rails-charet/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://heppokopg.github.io/blog/2013/11/29/rails-charet/" data-via="" data-counturl="http://heppokopg.github.io/blog/2013/11/29/rails-charet/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/11/28/parallel/" title="Previous Post: parallelで簡単並列処理">&laquo; parallelで簡単並列処理</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 
