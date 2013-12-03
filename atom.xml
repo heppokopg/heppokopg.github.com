@@ -4,7 +4,7 @@
   <title><![CDATA[へっぽこエンジニアの日誌]]></title>
   <link href="http://heppokopg.github.io/atom.xml" rel="self"/>
   <link href="http://heppokopg.github.io/"/>
-  <updated>2013-11-30T00:12:07+09:00</updated>
+  <updated>2013-12-03T23:21:41+09:00</updated>
   <id>http://heppokopg.github.io/</id>
   <author>
     <name><![CDATA[Heppoko]]></name>
@@ -12,6 +12,91 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[debuggerのinstallに失敗した時の対処法]]></title>
+    <link href="http://heppokopg.github.io/blog/2013/12/03/debugger-install/"/>
+    <updated>2013-12-03T23:18:00+09:00</updated>
+    <id>http://heppokopg.github.io/blog/2013/12/03/debugger-install</id>
+    <content type="html"><![CDATA[<p>boxenとrbenv使用時にdebuggerのインストールでコケた。
+以下がエラー内容。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>checking for rb_method_entry_t.called_id in method.h... no
+</span><span class='line'>checking for rb_control_frame_t.method_id in method.h... no
+</span><span class='line'>checking for rb_method_entry_t.called_id in method.h... no
+</span><span class='line'>checking for rb_control_frame_t.method_id in method.h... no
+</span><span class='line'>Makefile creation failed
+</span><span class='line'>**************************************************************************
+</span><span class='line'>No source for ruby-2.0.0-p353 provided with debugger-ruby_core_source gem.
+</span><span class='line'>**************************************************************************
+</span><span class='line'>*** extconf.rb failed ***
+</span><span class='line'>Could not create Makefile due to some reason, probably lack of necessary
+</span><span class='line'>libraries and/or headers.  Check the mkmf.log file for more details.  You may
+</span><span class='line'>need configuration options.
+</span><span class='line'>
+</span><span class='line'>Provided configuration options:
+</span><span class='line'>     --with-opt-dir
+</span><span class='line'>     --without-opt-dir
+</span><span class='line'>     --with-opt-include
+</span><span class='line'>     --without-opt-include=${opt-dir}/include
+</span><span class='line'>     --with-opt-lib
+</span><span class='line'>     --without-opt-lib=${opt-dir}/lib
+</span><span class='line'>     --with-make-prog
+</span><span class='line'>     --without-make-prog
+</span><span class='line'>     --srcdir=.
+</span><span class='line'>     --curdir
+</span><span class='line'>     --ruby=/opt/boxen/rbenv/versions/2.0.0-p353/bin/ruby
+</span><span class='line'>     --with-ruby-dir
+</span><span class='line'>     --without-ruby-dir
+</span><span class='line'>     --with-ruby-include
+</span><span class='line'>     --without-ruby-include=${ruby-dir}/include
+</span><span class='line'>     --with-ruby-lib
+</span><span class='line'>     --without-ruby-lib=${ruby-dir}/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以下が対処法。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install debugger-ruby_core_source --no-rdoc --no-ri -- --with-ruby-include=/opt/boxen/rbenv/versions/2.0.0-p353
+</span><span class='line'>gem install debugger-linecache -- --with-ruby-include=/opt/boxen/rbenv/versions/2.0.0-p353</span></code></pre></td></tr></table></div></figure>
+
+
+<p>で、改めてdebuggerをインストールしなおす。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[railsで接続するcharetを指定する]]></title>
