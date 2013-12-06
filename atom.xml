@@ -4,7 +4,7 @@
   <title><![CDATA[へっぽこエンジニアの日誌]]></title>
   <link href="http://heppokopg.github.io/atom.xml" rel="self"/>
   <link href="http://heppokopg.github.io/"/>
-  <updated>2013-12-03T23:27:44+09:00</updated>
+  <updated>2013-12-07T02:01:04+09:00</updated>
   <id>http://heppokopg.github.io/</id>
   <author>
     <name><![CDATA[Heppoko]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rubyからgoogle analyticsのデータを取得する]]></title>
+    <link href="http://heppokopg.github.io/blog/2013/12/07/ruby-analytics/"/>
+    <updated>2013-12-07T01:42:00+09:00</updated>
+    <id>http://heppokopg.github.io/blog/2013/12/07/ruby-analytics</id>
+    <content type="html"><![CDATA[<p><a href="https://code.google.com/apis/console">google apis console</a>にアクセスし、プロジェクトを作成。
+その後、serviceメニューからanalytics apiをonにする。
+API Accessメニューから、アプリを作成し、Certificateでアカウントを作成する。
+作成時にできた<strong>privatekey.p12</strong>をダウンロードしておく。</p>
+
+<p>アカウント作成時のアドレス<strong>yourapp@developer.gserviceaccount.com</strong>をanalyticsのユーザーとして登録。</p>
+
+<p>これで準備は完了。</p>
+
+<p>ライブラリをインストールする。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install google-api-client</span></code></pre></td></tr></table></div></figure>
+
+
+<p>サンプルを使う。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Inspired by https://gist.github.com/3166610
+</span><span class='line'>require 'google/api_client'
+</span><span class='line'>require 'date'
+</span><span class='line'>
+</span><span class='line'># Update these to match your own apps credentials
+</span><span class='line'>service_account_email = 'yourapp@developer.gserviceaccount.com' # Email of service account
+</span><span class='line'>key_file = 'privatekey.p12' # File containing your private key
+</span><span class='line'>key_secret = 'notasecret' # Password to unlock private key
+</span><span class='line'>profileID = '123456' # Analytics profile ID.
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>client = Google::APIClient.new()
+</span><span class='line'>
+</span><span class='line'># Load our credentials for the service account
+</span><span class='line'>key = Google::APIClient::KeyUtils.load_from_pkcs12(key_file, key_secret)
+</span><span class='line'>client.authorization = Signet::OAuth2::Client.new(
+</span><span class='line'>  :token_credential_uri =&gt; 'https://accounts.google.com/o/oauth2/token',
+</span><span class='line'>  :audience =&gt; 'https://accounts.google.com/o/oauth2/token',
+</span><span class='line'>  :scope =&gt; 'https://www.googleapis.com/auth/analytics.readonly',
+</span><span class='line'>  :issuer =&gt; service_account_email,
+</span><span class='line'>  :signing_key =&gt; key)
+</span><span class='line'>
+</span><span class='line'># Request a token for our service account
+</span><span class='line'>client.authorization.fetch_access_token!
+</span><span class='line'>
+</span><span class='line'>analytics = client.discovered_api('analytics','v3')
+</span><span class='line'>
+</span><span class='line'>startDate = DateTime.now.prev_month.strftime("%Y-%m-%d")
+</span><span class='line'>endDate = DateTime.now.strftime("%Y-%m-%d")
+</span><span class='line'>
+</span><span class='line'>visitCount = client.execute(:api_method =&gt; analytics.data.ga.get, :parameters =&gt; { 
+</span><span class='line'>  'ids' =&gt; "ga:" + profileID, 
+</span><span class='line'>  'start-date' =&gt; startDate,
+</span><span class='line'>  'end-date' =&gt; endDate,
+</span><span class='line'>  'metrics' =&gt; "ga:visits",
+</span><span class='line'>})
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>プロファイルIDは日本語のanalytics画面だと、「ビュー ID
+」となっているので、注意が必要。</p>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=heppokopg0a-22&o=9&p=8&l=as1&asins=B00CIR1QEC&ref=tf_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[debuggerのinstallに失敗した時の対処法]]></title>
