@@ -9,10 +9,9 @@
   <meta name="author" content="Heppoko">
 
   
-  <meta name="description" content="google apis consoleにアクセスし、プロジェクトを作成。
-その後、serviceメニューからanalytics apiをonにする。
-API Accessメニューから、アプリを作成し、Certificateでアカウントを作成する。
-作成時にできたprivatekey. &hellip;">
+  <meta name="description" content="jQueryのoffsetを使って、topの値を取得しようとした時、想定と違った値がかえってくることがある。
+それは、onReadyで実行した場合。
+onReadyでは、画像の読み込みが終わる前に実行されるので、画像の高さ分がずれることがある。 対策としては、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +79,62 @@ API Accessメニューから、アプリを作成し、Certificateでアカウ�
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/10/jquery-offset/">jQueryのoffsetで正確な値を取得する</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-10T00:18:00+09:00" pubdate data-updated="true">Dec 10<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>jQueryのoffsetを使って、topの値を取得しようとした時、想定と違った値がかえってくることがある。
+それは、onReadyで実行した場合。
+onReadyでは、画像の読み込みが終わる前に実行されるので、画像の高さ分がずれることがある。</p>
+
+<p>対策としては、javascriptのonloadを使うことだが、onloadとonreadyで競合するので、イベントを追加することで対応する。
+具体的なコードとしては、こんな感じ。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jQuery.event.add(window, "load", function(){ 
+</span><span class='line'>  var hoge = $("#hoge").offset.top;
+</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=heppokopg0a-22&o=9&p=8&l=as1&asins=4048913913&ref=tf_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -461,6 +516,10 @@ API Accessメニューから、アプリを作成し、Certificateでアカウ�
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/12/10/jquery-offset/">jQueryのoffsetで正確な値を取得する</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/12/07/ruby-analytics/">rubyからgoogle analyticsのデータを取得する</a>

@@ -4,7 +4,7 @@
   <title><![CDATA[へっぽこエンジニアの日誌]]></title>
   <link href="http://heppokopg.github.io/atom.xml" rel="self"/>
   <link href="http://heppokopg.github.io/"/>
-  <updated>2013-12-07T02:01:04+09:00</updated>
+  <updated>2013-12-10T00:28:09+09:00</updated>
   <id>http://heppokopg.github.io/</id>
   <author>
     <name><![CDATA[Heppoko]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[jQueryのoffsetで正確な値を取得する]]></title>
+    <link href="http://heppokopg.github.io/blog/2013/12/10/jquery-offset/"/>
+    <updated>2013-12-10T00:18:00+09:00</updated>
+    <id>http://heppokopg.github.io/blog/2013/12/10/jquery-offset</id>
+    <content type="html"><![CDATA[<p>jQueryのoffsetを使って、topの値を取得しようとした時、想定と違った値がかえってくることがある。
+それは、onReadyで実行した場合。
+onReadyでは、画像の読み込みが終わる前に実行されるので、画像の高さ分がずれることがある。</p>
+
+<p>対策としては、javascriptのonloadを使うことだが、onloadとonreadyで競合するので、イベントを追加することで対応する。
+具体的なコードとしては、こんな感じ。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jQuery.event.add(window, "load", function(){ 
+</span><span class='line'>  var hoge = $("#hoge").offset.top;
+</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=heppokopg0a-22&o=9&p=8&l=as1&asins=4048913913&ref=tf_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rubyからgoogle analyticsのデータを取得する]]></title>
