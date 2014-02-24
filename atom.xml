@@ -4,7 +4,7 @@
   <title><![CDATA[へっぽこエンジニアの日誌]]></title>
   <link href="http://heppokopg.github.io/atom.xml" rel="self"/>
   <link href="http://heppokopg.github.io/"/>
-  <updated>2013-12-10T00:28:09+09:00</updated>
+  <updated>2014-02-24T17:08:24+09:00</updated>
   <id>http://heppokopg.github.io/</id>
   <author>
     <name><![CDATA[Heppoko]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac OS Xでdockerを使う]]></title>
+    <link href="http://heppokopg.github.io/blog/2014/02/24/boot2docker/"/>
+    <updated>2014-02-24T16:59:00+09:00</updated>
+    <id>http://heppokopg.github.io/blog/2014/02/24/boot2docker</id>
+    <content type="html"><![CDATA[<p>dockerをmacで使いやすくなったので、試してみる。
+brewで入れられるようなので、それで。</p>
+
+<p>流れとしては、</p>
+
+<ol>
+<li>brewのアップデート</li>
+<li>brewによるインストール</li>
+<li>環境変数の設定</li>
+</ol>
+
+
+<p>という感じで。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ brew update
+</span><span class='line'>$ brew install boot2docker
+</span><span class='line'>$ export DOCKER_HOST=tcp://
+</span><span class='line'>$ boot2docker init
+</span><span class='line'>$ boot2docker up</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[chef-soloでRails環境を作る]]></title>
+    <link href="http://heppokopg.github.io/blog/2014/01/08/chef-soloderailshuan-jing-wozuo-ru/"/>
+    <updated>2014-01-08T23:26:00+09:00</updated>
+    <id>http://heppokopg.github.io/blog/2014/01/08/chef-soloderailshuan-jing-wozuo-ru</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[chef-soloでRails環境を、Vagrantでテストしつつ、さくらVPSに構築する]]></title>
+    <link href="http://heppokopg.github.io/blog/2014/01/08/chef-solo/"/>
+    <updated>2014-01-08T23:26:00+09:00</updated>
+    <id>http://heppokopg.github.io/blog/2014/01/08/chef-solo</id>
+    <content type="html"><![CDATA[<h1>chef-soloでRails環境を、Vagrantでテストしつつ、さくらVPSに構築する</h1>
+
+<p>chef soloで実用するための</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[jQueryのoffsetで正確な値を取得する]]></title>
