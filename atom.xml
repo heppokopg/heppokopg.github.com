@@ -4,7 +4,7 @@
   <title><![CDATA[へっぽこエンジニアの日誌]]></title>
   <link href="http://heppokopg.github.io/atom.xml" rel="self"/>
   <link href="http://heppokopg.github.io/"/>
-  <updated>2014-02-24T17:11:01+09:00</updated>
+  <updated>2014-02-24T17:15:54+09:00</updated>
   <id>http://heppokopg.github.io/</id>
   <author>
     <name><![CDATA[Heppoko]]></name>
@@ -44,7 +44,7 @@ brewで入れられるようなので、それで。</p>
 </span><span class='line'>$ boot2docker up</span></code></pre></td></tr></table></div></figure>
 
 
-
+<p>これで準備完了。あとは、dockerfileを落としてきたり何やらしたりできる。</p>
 ]]></content>
   </entry>
   
